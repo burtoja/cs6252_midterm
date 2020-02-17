@@ -1,14 +1,10 @@
 <?php
-require ('./model/database.php');
-require ('./model/books_db.php');
-require ('./model/reviews_db.php');
-
 $books = get_books ();
 
 $action = filter_input ( INPUT_POST, 'action' );
-if ($action == 'title_chosen') {
+if ($action == 'title_chosen_new_review') {
 	$book_id_chosen = filter_input ( INPUT_POST, 'book_id_for_review', FILTER_VALIDATE_INT );
-	$title_chosen = get_book_title ( $book_id_chosen );
+	$title_chosen = get_book_info($book_id_chosen)['bookTitle'];
 }
 
 ?>
@@ -18,7 +14,7 @@ if ($action == 'title_chosen') {
 	<h2>Submit New Review</h2>
 
 	<!-- Select Title -->
-	<?php if ($action != 'title_chosen') :?>
+	<?php if ($action != 'title_chosen_new_review'  && $action != 'final_submit_new_review') :?>
 	<form action="./manage.php" method="post">
 		<input type="hidden" name="action" value="title_chosen_new_review">
 		<label>Book Title:</label>
@@ -35,11 +31,12 @@ if ($action == 'title_chosen') {
 	<?php endif; ?>
 	
 	<!-- Enter Rating and Review -->
-	<?php if ($action == 'title_chosen') :?>
+	<?php if ($action == 'title_chosen_new_review') :?>
 	<h3><?php echo $title_chosen ?></h3>
 	<p>Star Rating:</p>
-	<form action="submit_new_review.php" method="post">
+	<form action="./manage.php" method="post">
 		<input type="hidden" name="action" value="final_submit_new_review">
+		<input type="hidden" name="book_id" value="<?php echo $book_id_chosen?>">
 		<input type="radio" id="1-star" name="rating" value="1">
 		<label for="1-star">1 Star</label>
 		<br>
@@ -58,12 +55,19 @@ if ($action == 'title_chosen') {
 
 		<label for="review_text">Review:</label>
 		<br>
-		<textarea id="review_text" rows="8" cols="50"></textarea>
+		<textarea id="review_text" rows="8" cols="50" name="review_text"></textarea>
 		<br>
+		
 		<input type="submit" value="Submit Review">
 		<label>&nbsp;</label>
 	</form>
 	<?php endif; ?>
+	
+	<!-- Submit New Review to DB -->
+	<?php if ($action == 'final_submit_new_review') :?>
+	<h3>Success!  Your review has been successfully submitted.  Thank you.</h3>
+	<?php endif; ?>
+
 
 </main>
 <?php include './view/footer.php'; ?>

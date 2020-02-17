@@ -24,4 +24,18 @@ function get_review_info_by_id($review_id) {
 	return $review_info;
 }
 
+function add_review($book_id, $rating, $review) {
+	global $db;
+	$query = 'INSERT INTO reviews
+                 (bookID, reviewDate, rating, review)
+              VALUES
+                 (:bookID, NOW(), :rating, :review)';
+	$statement = $db->prepare($query);
+	$statement->bindValue(':bookID', $book_id);
+	$statement->bindValue(':rating', $rating);
+	$statement->bindValue(':review', $review);
+	$statement->execute();
+	$statement->closeCursor();
+}
+
 ?>
