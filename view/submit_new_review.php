@@ -7,7 +7,8 @@ $books = get_books ();
 
 $action = filter_input ( INPUT_POST, 'action' );
 if ($action == 'title_chosen') {
-	$title_chosen = filter_input ( INPUT_POST, 'book_title_for_review' );
+	$book_id_chosen = filter_input ( INPUT_POST, 'book_id_for_review', FILTER_VALIDATE_INT );
+	$title_chosen = get_book_title ( $book_id_chosen );
 }
 
 ?>
@@ -18,17 +19,16 @@ if ($action == 'title_chosen') {
 
 	<!-- Select Title -->
 	<?php if ($action != 'title_chosen') :?>
-		<form action="./manage.php" method="post">
-		<input type="hidden" name="action" value="title_chosen">
-		<label>List:</label>
-		<select name="book_title_for_review">
-		        	<?php foreach ($books as $book) : ?>
-		        		<?php $title = $book['bookTitle']; ?>
-		                 	<option value="<?php echo $title; ?>">
-		                 	<?php echo $title; ?>
-		             		</option>
-					<?php endforeach; ?>
-		 		</select>
+	<form action="./manage.php" method="post">
+		<input type="hidden" name="action" value="title_chosen_new_review">
+		<label>Book Title:</label>
+		<select name="book_id_for_review">
+        	<?php foreach ($books as $book) : ?>
+                 	<option value="<?php echo $book['bookID'];; ?>">
+                 		<?php echo $book['bookTitle']; ?>
+             		</option>
+				<?php endforeach; ?>
+ 		</select>
 		<input type="submit" value="Choose Title">
 		<label>&nbsp;</label>
 	</form>
@@ -55,8 +55,9 @@ if ($action == 'title_chosen') {
 		<input type="radio" id="5-star" name="rating" value="5">
 		<label for="5-star">5 Stars</label>
 		<br>
-		
-		<label for="review_text">Review:</label><br>
+
+		<label for="review_text">Review:</label>
+		<br>
 		<textarea id="review_text" rows="8" cols="50"></textarea>
 		<br>
 		<input type="submit" value="Submit Review">

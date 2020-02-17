@@ -12,4 +12,16 @@ function get_reviews_by_book($book_id) {
     return $reviews;
 }
 
+function get_review_info_by_id($review_id) {
+	global $db;
+	$query = 'SELECT * FROM reviews
+              WHERE reviewID = :review_id';
+	$statement = $db->prepare($query);
+	$statement->bindValue(':review_id', $review_id);
+	$statement->execute();
+	$review_info = $statement->fetch();
+	$statement->closeCursor();
+	return $review_info;
+}
+
 ?>
