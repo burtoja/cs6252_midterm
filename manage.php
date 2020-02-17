@@ -2,6 +2,19 @@
 require ('./model/database.php');
 require ('./model/books_db.php');
 require ('./model/reviews_db.php');
+require('./model/userids_db.php');
+
+//Get userID from cookie or create a new one and set it in a cookie
+if(isset($_COOKIE["userid"])) {
+	$user_id = filter_input(INPUT_COOKIE, 'userid', FILTER_VALIDATE_INT);
+} else {
+	$name = 'userid';
+	$value = (int)get_new_userID();
+	$expire = strtotime('+1 year');
+	$path = '/';
+	setcookie($name, $value, $expire, $path);
+	$user_id = $value;
+}
 
 $action = filter_input(INPUT_POST, 'action');
 $manage_choice = filter_input(INPUT_POST, 'manage_choice');
@@ -37,7 +50,7 @@ switch($action) {
 			$error_message = "Invalid review form data. Check all fields and try again.";
 			include('./errors/database_error.php');
 		} else {
-			add_review($book_id, $rating, $review);		
+			add_review($book_id, $rating, $review, $user_id);		
 			include('./view/submit_new_review.php');
 		}
 		break;

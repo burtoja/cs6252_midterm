@@ -36,16 +36,17 @@ function get_review_info_by_user($user_id) {
 	return $review_info;
 }
 
-function add_review($book_id, $rating, $review) {
+function add_review($book_id, $rating, $review, $user_id) {
 	global $db;
 	$query = 'INSERT INTO reviews
-                 (bookID, reviewDate, rating, review)
+                 (bookID, reviewDate, rating, review, userID)
               VALUES
-                 (:bookID, NOW(), :rating, :review)';
+                 (:bookID, NOW(), :rating, :review, :user_id)';
 	$statement = $db->prepare($query);
 	$statement->bindValue(':bookID', $book_id);
 	$statement->bindValue(':rating', $rating);
 	$statement->bindValue(':review', $review);
+	$statement->bindValue(':user_id', $user_id);
 	$statement->execute();
 	$statement->closeCursor();
 }

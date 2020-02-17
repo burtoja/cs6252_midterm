@@ -19,9 +19,6 @@ if(isset($_COOKIE["userid"])) {
 	//Get reviews by user
 	$reviews = get_review_info_by_user($user_id);
 	$books = get_books();
-
-
-
 ?>
 
 <?php include 'header.php'; ?>
