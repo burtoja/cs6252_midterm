@@ -4,7 +4,7 @@ $books = get_books ();
 $action = filter_input ( INPUT_POST, 'action' );
 if ($action == 'title_chosen_new_review') {
 	$book_id_chosen = filter_input ( INPUT_POST, 'book_id_for_review', FILTER_VALIDATE_INT );
-	$title_chosen = get_book_info($book_id_chosen)['bookTitle'];
+	$title_chosen = get_book_info ( $book_id_chosen ) ['bookTitle'];
 }
 
 ?>
@@ -36,7 +36,9 @@ if ($action == 'title_chosen_new_review') {
 	<p>Star Rating:</p>
 	<form action="./manage.php" method="post">
 		<input type="hidden" name="action" value="final_submit_new_review">
-		<input type="hidden" name="book_id" value="<?php echo $book_id_chosen?>">
+		<input type="hidden" name="book_id"
+			value="<?php echo $book_id_chosen?>">
+
 		<input type="radio" id="1-star" name="rating" value="1">
 		<label for="1-star">1 Star</label>
 		<br>
@@ -57,15 +59,21 @@ if ($action == 'title_chosen_new_review') {
 		<br>
 		<textarea id="review_text" rows="8" cols="50" name="review_text"></textarea>
 		<br>
-		
+
 		<input type="submit" value="Submit Review">
 		<label>&nbsp;</label>
 	</form>
 	<?php endif; ?>
 	
-	<!-- Submit New Review to DB -->
+	<!-- Report After Submit New Review to DB -->
 	<?php if ($action == 'final_submit_new_review') :?>
-	<h3>Success!  Your review has been successfully submitted.  Thank you.</h3>
+	<h3>Success! Your review has been successfully submitted. Thank you.</h3>
+	<h3>Here is your review for <?php echo get_book_info($book_id)['bookTitle']?>:</h3>
+	<p class="review"><?php echo $review; ?></p>
+	<p>
+		<span class="rating">User Rating: <?php echo $rating; ?> STARS</span>
+		<br>
+	</p>
 	<?php endif; ?>
 
 

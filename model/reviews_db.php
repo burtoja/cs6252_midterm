@@ -38,4 +38,22 @@ function add_review($book_id, $rating, $review) {
 	$statement->closeCursor();
 }
 
+function edit_review($review_id, $rating, $review) {
+	global $db;
+	$query = '	UPDATE
+				 	reviews
+				SET
+                 	review = :review,
+					rating = :rating
+				WHERE	
+					reviewID = :reviewID
+				';
+	$statement = $db->prepare($query);
+	$statement->bindValue(':reviewID', $review_id);
+	$statement->bindValue(':rating', $rating);
+	$statement->bindValue(':review', $review);
+	$statement->execute();
+	$statement->closeCursor();
+}
+
 ?>
