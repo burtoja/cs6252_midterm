@@ -56,4 +56,14 @@ function edit_review($review_id, $rating, $review) {
 	$statement->closeCursor();
 }
 
+function delete_review($review_id) {
+	global $db;
+	$query = 'DELETE FROM reviews
+              WHERE reviewID = :review_id';
+	$statement = $db->prepare($query);
+	$statement->bindValue(':review_id', $review_id);
+	$statement->execute();
+	$statement->closeCursor();
+}
+
 ?>

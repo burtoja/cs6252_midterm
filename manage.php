@@ -62,7 +62,24 @@ switch($action) {
 			include('./view/edit_existing_review.php');
 		}
 		break;
-
+		
+	//DELETE REVIEW CASES
+	case 'title_chosen_delete_review' :
+		include('./view/delete_existing_review.php');
+		break;
+	case 'review_chosen_delete_review' :		
+		include('./view/delete_existing_review.php');
+		break;
+	case 'final_submit_delete_review' :
+		$review_id = filter_input(INPUT_POST, 'review_id', FILTER_VALIDATE_INT );
+		if ($review_id == NULL) {
+			$error_message = "Invalid form data. Please try again";
+			include('./errors/database_error.php');
+		} else {
+			delete_review($review_id);
+			include('./view/delete_existing_review.php');
+		}		
+		break;
 	//ALL ELSE DEFAULTS BACK TO THE CHOOSE YOUR TASK VIEW
 	default :
 		include('./view/manage_reviews_choices.php');
