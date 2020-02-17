@@ -24,6 +24,18 @@ function get_review_info_by_id($review_id) {
 	return $review_info;
 }
 
+function get_review_info_by_user($user_id) {
+	global $db;
+	$query = 'SELECT * FROM reviews
+              WHERE userID = :user_id';
+	$statement = $db->prepare($query);
+	$statement->bindValue(':user_id', $user_id);
+	$statement->execute();
+	$review_info = $statement->fetchAll();
+	$statement->closeCursor();
+	return $review_info;
+}
+
 function add_review($book_id, $rating, $review) {
 	global $db;
 	$query = 'INSERT INTO reviews
