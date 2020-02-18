@@ -16,6 +16,7 @@ if ($action == 'title_chosen_delete_review') {
 ?>
 
 <?php include './view/header.php'; ?>
+<?php include './view/nav_menu.php'; ?>
 <main>
 	<h2>Delete Existing Review</h2>
 

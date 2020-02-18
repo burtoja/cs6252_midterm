@@ -4,7 +4,7 @@
 <head>
     <title>Book Reviews</title>
     <link rel="stylesheet" type="text/css"
-          href="/cs6252/Lab5AllenBurton/main.css">
+          href="/cs6252/MidtermProjectAllenBurton/main.css">
 </head>
 
 <!-- the body section -->

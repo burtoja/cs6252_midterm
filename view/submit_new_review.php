@@ -10,6 +10,7 @@ if ($action == 'title_chosen_new_review') {
 ?>
 
 <?php include './view/header.php'; ?>
+<?php include './view/nav_menu.php'; ?>
 <main>
 	<h2>Submit New Review</h2>
 

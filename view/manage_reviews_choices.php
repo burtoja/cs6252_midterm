@@ -1,4 +1,5 @@
 <?php include './view/header.php'; ?>
+<?php include './view/nav_menu.php'; ?>
 <main>
 	<h2>Manage Book Reviews</h2>
 
