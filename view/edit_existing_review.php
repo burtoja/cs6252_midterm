@@ -9,12 +9,13 @@
 		<input type="hidden" name="action" value="title_chosen_edit_review">
 		<label>Book Title:</label>
 		<select name="book_id_for_review">
-	        	<?php foreach ($books as $book) : ?>
-	                 	<option value="<?php echo $book['bookID'];; ?>">
-	                 		<?php echo $book['bookTitle']; ?>
-	             		</option>
-					<?php endforeach; ?>
-	 		</select>
+        	<?php foreach ($books as $book) : ?>
+				<option value="<?php echo $book['bookID'];; ?>">
+				<?php echo $book['bookTitle']; ?>
+				</option>
+			<?php endforeach; ?>
+ 		</select>
+ 		<br>
 		<input type="submit" value="Choose Title">
 		<label>&nbsp;</label>
 	</form>

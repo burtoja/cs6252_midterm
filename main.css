@@ -49,7 +49,7 @@ nav li a {
 
 /* Change the link color to #111 (black) on hover */
 nav li a:hover {
-  background-color: grey;
+  background-color: #68AFA6;
 }
 
 main {
@@ -118,6 +118,20 @@ main a {
 
 main a:hover {
 	color: rgb(208, 133, 4);
+}
+
+input[type=submit] {
+  background-color: #984447;
+  border: none;
+  font-size: medium;
+  color: #9AD2CB;
+  padding: 8px 16px;
+  margin-top: 1.0em;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #BA6769;
 }
 
 .review {

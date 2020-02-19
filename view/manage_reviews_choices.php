@@ -13,7 +13,7 @@
 		<input type="radio" id="delete" name="manage_choice" value="Delete Existing">
 			<label for="new">Delete an existing review</label><br>
 			<br>
-		<input type="submit" value="Submit">
+		<input type="submit" value="Choose Option">
 			<label>&nbsp;</label>
 	</form>
 </main>

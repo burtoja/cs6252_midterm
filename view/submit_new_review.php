@@ -15,6 +15,7 @@
              		</option>
 				<?php endforeach; ?>
  		</select>
+ 		<br>
 		<input type="submit" value="Choose Title">
 		<label>&nbsp;</label>
 	</form>
