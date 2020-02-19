@@ -15,7 +15,7 @@
 				if ($book_id != 0) :
 	 				$book_info = get_book_info($book_id);
 				?>
-				<li>	
+				<li class="book_title_link">	
 					<h2>
 						<a href="./index.php?bookID=<?php echo $book_id; ?>">	
 							<?php echo $book_info['bookTitle']; ?> 
@@ -25,13 +25,15 @@
 				
 				
 				<?php if (!empty($_GET) && $_GET['bookID'] == $book_id) : ?>
-					by: <?php echo $book_info['authorFirstName'] . ' ' . $book_info['authorLastName']; ?>
-					(<?php echo $book_info['numPages']?> pgs.)			
+					<ul class="book_info">
+						<li>by: <?php echo $book_info['authorFirstName'] . ' ' . $book_info['authorLastName']; ?></li>
+						<li>(<?php echo $book_info['numPages']?> pgs.)	</li>	
+					</ul>	
 				<?php endif;?>				
 				
 			
 				<?php if (!empty($_GET) && $_GET['bookID'] == $book_id) : ?>
-					<ul>
+					<ul class="book_info">
 						<?php $reviews = get_reviews_by_user_and_book_id($user_id, $book_id);?>
 						<?php if(count($reviews) == 0) : ?>
 							<li>

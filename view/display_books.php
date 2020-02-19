@@ -7,20 +7,23 @@
 	<ul>
  		<?php foreach ($books as $book) :?>
  			<?php $book_id = $book['bookID'];?>
-			<li>
+			<li class="book_title_link">
 				<h2>
 					<a href="./reviews.php?bookID=<?php echo $book_id; ?>">
 						<?php echo $book['bookTitle']; ?> 
 					</a>
 				</h2>
+			</li>
 				<?php if (!empty($_GET) && $_GET['bookID'] == $book['bookID']) : ?>
-					by: <?php echo $book['authorFirstName'] . ' ' . $book['authorLastName']; ?>
-					(<?php echo $book['numPages']?> pgs.)			
+				<ul class="book_info">
+					<li>by: <?php echo $book['authorFirstName'] . ' ' . $book['authorLastName']; ?></li>
+					<li>(<?php echo $book['numPages']?> pgs.)</li>
+				</ul>			
 				<?php endif;?>				
 				
 			
 				<?php if (!empty($_GET) && $_GET['bookID'] == $book['bookID']) : ?>
-					<ul>
+					<ul class="book_info">
 						<?php $reviews = get_reviews_by_book($book_id);?>
 						<?php if(count($reviews) == 0) : ?>
 							<li>
