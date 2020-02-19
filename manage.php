@@ -50,8 +50,8 @@ switch($action) {
 		$rating = filter_input(INPUT_POST, 'rating', FILTER_VALIDATE_INT );
 		$review = filter_input(INPUT_POST, 'review_text');
 		if ($book_id == NULL || $rating == NULL || $review == NULL) {
-			$error_message = "Invalid review form data. Check all fields and try again.";
-			include('./errors/database_error.php');
+			$error_message = "Some fileds were left blank. Check all fields and try again.";
+			include('./errors/form_error.php');
 		} else {
 			add_review($book_id, $rating, $review, $user_id);		
 			include('./view/submit_new_review.php');
@@ -69,9 +69,14 @@ switch($action) {
 		$book_id_chosen = filter_input ( INPUT_POST, 'book_id_for_review', FILTER_VALIDATE_INT );
 		$title_chosen = get_book_info ( $book_id_chosen ) ['bookTitle'];
 		$review_id_chosen = filter_input ( INPUT_POST, 'review_choice', FILTER_VALIDATE_INT );
-		$review_info = get_review_info_by_id ( $review_id_chosen );
-		$current_rating = $review_info['rating'];
-		include('./view/edit_existing_review.php');
+		if ($review_id_chosen == NULL) {
+			$error_message = "No review selected. Please use the back button and try again.";
+			include('./errors/form_error.php');
+		} else {
+			$review_info = get_review_info_by_id ( $review_id_chosen );
+			$current_rating = $review_info['rating'];
+			include('./view/edit_existing_review.php');
+		}
 		break;
 	case 'final_submit_edit_review' :
 		$book_id = filter_input(INPUT_POST, 'book_id', FILTER_VALIDATE_INT );
