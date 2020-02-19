@@ -17,7 +17,24 @@ if(isset($_COOKIE["userid"])) {
 }
 
 	//Get reviews by user
-	$reviews = get_review_info_by_user($user_id);
+	$reviews_raw = get_review_info_by_user($user_id);
 	$books = get_books();
+	
+	$reviewNumber = 0;
+	$selectedBookID[0] = 0;
+	$selectedBookID[1] = 0;
+	$selectedBookID[2] = 0;
+	foreach ( $reviews_raw as $review ){
+		if ($reviewNumber < 3 
+				&& $review['bookID'] != $selectedBookID[0]
+				&& $review['bookID'] != $selectedBookID[1]
+				&& $review['bookID'] != $selectedBookID[2]) {
+			$reviews[$reviewNumber] = $review;
+			$selectedBookID[$reviewNumber] = $review ['bookID'];
+			$reviewNumber++;
+		}
+	}
+	
+include './view/user_home.php'; 
+
 ?>
-<?php include './view/user_home.php'; ?>

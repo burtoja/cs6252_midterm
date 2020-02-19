@@ -29,9 +29,25 @@ function get_review_info_by_user($user_id) {
 	$query = 'SELECT * FROM reviews
               WHERE userID = :user_id
 			  ORDER BY rating DESC, reviewDate DESC
-			  LIMIT 3';
+			  ';
 	$statement = $db->prepare($query);
 	$statement->bindValue(':user_id', $user_id);
+	$statement->execute();
+	$review_info = $statement->fetchAll();
+	$statement->closeCursor();
+	return $review_info;
+}
+
+function get_reviews_by_user_and_book_id($user_id, $book_id) {
+	global $db;
+	$query = 'SELECT * FROM reviews
+              WHERE userID = :user_id
+			  AND bookID = :book_id
+			  ORDER BY rating DESC, reviewDate DESC
+			  ';
+	$statement = $db->prepare($query);
+	$statement->bindValue(':user_id', $user_id);
+	$statement->bindValue(':book_id', $book_id);
 	$statement->execute();
 	$review_info = $statement->fetchAll();
 	$statement->closeCursor();
