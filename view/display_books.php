@@ -2,6 +2,8 @@
 <?php include './view/nav_menu.php'; ?>
 
 <main>
+
+	<h2>Read Book Reviews</h2>
 	<p>Choose a book below to read the reviews posted about it:</p>
 
 	<ul>
@@ -14,43 +16,33 @@
 					</a>
 				</h2>
 			</li>
-				<?php if (!empty($_GET) && $_GET['bookID'] == $book['bookID']) : ?>
-				<ul class="book_info">
-					<li>by: <?php echo $book['authorFirstName'] . ' ' . $book['authorLastName']; ?></li>
-					<li>(<?php echo $book['numPages']?> pgs.)</li>
-				</ul>			
-				<?php endif;?>				
-				
+			<?php if (!empty($_GET) && $_GET['bookID'] == $book['bookID']) : ?>
+			<ul class="book_info">
+				<li>Author: <?php echo $book['authorFirstName'] . ' ' . $book['authorLastName']; ?></li>
+				<li>(<?php echo $book['numPages']?> pgs.)</li>
+			</ul>			
+			<?php endif;?>				
 			
-				<?php if (!empty($_GET) && $_GET['bookID'] == $book['bookID']) : ?>
-					<ul class="book_info">
-						<?php $reviews = get_reviews_by_book($book_id);?>
-						<?php if(count($reviews) == 0) : ?>
-							<li>
-								There are no reviews for this title.
-							</li>
-						<?php else: ?>					
-							<?php foreach ($reviews as $review) :?>
-							<li>
-								<h3>REVIEW:</h3>
-								<p class="review">
-									<?php echo $review['review']; ?>
-								</p>
-								<p>
-									<span class="rating">User Rating: <?php echo $review['rating']; ?> STARS</span><br>
-									<span class="review_date">(Posted on <?php echo $review['reviewDate']; ?>)</span>
-								</p>
-							</li>
-							<?php endforeach; ?>
-						<?php endif;?>
-					</ul>
+			<?php if (!empty($_GET) && $_GET['bookID'] == $book['bookID']) : ?>
+			<ul class="book_info">
+				<?php $reviews = get_reviews_by_book($book_id);?>
+				<?php if(count($reviews) == 0) : ?>
+					<li>
+						There are no reviews for this title.
+					</li>
+					<?php else: ?>					
+						<?php foreach ($reviews as $review) :?>
+						<li>
+							<h3>REVIEW:</h3>
+							<span class="rating">User Rating: <?php echo $review['rating']; ?> STARS</span><br>
+							<span class="review"><?php echo $review['review']; ?></span><br>
+							<span class="review_date">(Posted on <?php echo $review['reviewDate']; ?>)</span>	
+						</li>
+						<?php endforeach; ?>
 					<?php endif;?>
-					
-					
-					
-					
-				
-				</a>
+				</ul>
+				<?php endif;?>
+
 			</li>
 		<?php endforeach; ?>
 	</ul>

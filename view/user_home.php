@@ -43,13 +43,9 @@
 							<?php foreach ($reviews as $review) :?>
 							<li>
 								<h3>REVIEW:</h3>
-								<p class="review">
-									<?php echo $review['review']; ?>
-								</p>
-								<p>
-									<span class="rating">User Rating: <?php echo $review['rating']; ?> STARS</span><br>
-									<span class="review_date">(Posted on <?php echo $review['reviewDate']; ?>)</span>
-								</p>
+								<span class="rating">User Rating: <?php echo $review['rating']; ?> STARS</span><br>
+								<span class="review"><?php echo $review['review']; ?></span><br>
+								<span class="review_date">(Posted on <?php echo $review['reviewDate']; ?>)</span><br>	
 							</li>
 							<?php endforeach; ?>
 						<?php endif;?>

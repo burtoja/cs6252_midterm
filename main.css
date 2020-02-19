@@ -42,6 +42,7 @@ nav li a {
   display: block;
   color: #63326E;
   text-align: center;
+  font-weight: bold;
   padding: 14px 16px;
   text-decoration: none;
 }
@@ -54,6 +55,7 @@ nav li a:hover {
 main {
 	padding-left: 0.5em;
 	padding-right: 3.0em;
+	padding-bottom: 2.0em;
 }
 
 footer {
@@ -70,7 +72,7 @@ footer p {
 }
 
 h1 {
-	font-size: 150%;
+	font-size: 175%;
 	margin: .5em 0;
 }
 
@@ -90,11 +92,11 @@ h1, h2 {
 
 main ul {
 	list-style-type: none;
-	padding-bottom: 1em;
+	padding-bottom: 0.2em;
 }
 
 main li {
-	padding-bottom: 0.5em;
+	padding-bottom: 0.2em;
 }
 
 .book_title_link {
