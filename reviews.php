@@ -4,4 +4,4 @@ require('./model/books_db.php');
 require('./model/reviews_db.php');
 
 $books = get_books();
-include('./view/display_book_reviews.php');
+include('./view/display_books.php');

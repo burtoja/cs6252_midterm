@@ -27,7 +27,9 @@ function get_review_info_by_id($review_id) {
 function get_review_info_by_user($user_id) {
 	global $db;
 	$query = 'SELECT * FROM reviews
-              WHERE userID = :user_id';
+              WHERE userID = :user_id
+			  ORDER BY rating DESC, reviewDate DESC
+			  LIMIT 3';
 	$statement = $db->prepare($query);
 	$statement->bindValue(':user_id', $user_id);
 	$statement->execute();
