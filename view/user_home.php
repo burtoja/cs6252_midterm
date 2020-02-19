@@ -2,8 +2,9 @@
 <?php include './view/nav_menu.php' ?>
 <main>
 
-	<h2>Welcome to the Book Review Hub</h2>
-	<p>Below you will find your most recent positive reviews (up to 3).
+	<h2>Welcome to Bippity Boppity Book Reviews</h2>
+	<p>This is your hub for the best bogus book reviews on the web.  
+		Below you will find the titles youhave most recently reviewed (up to 3).
 		Feel free to navigate the site to read other reviews, add more
 		reviews, edit your previous reviews, or delete your previous reviews.</p>
 	<ul>

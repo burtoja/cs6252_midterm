@@ -2,11 +2,11 @@
 <html>
 <!-- the head section -->
 <head>
-    <title>Book Reviews</title>
+    <title>Bippity Boppity Book Reveiws</title>
     <link rel="stylesheet" type="text/css"
           href="/cs6252/MidtermProjectAllenBurton/main.css">
 </head>
 
 <!-- the body section -->
 <body>
-<header><h1>Book Reviews</h1></header>
+<header><h1>Bippity Boppity Book Reveiws</h1></header>
