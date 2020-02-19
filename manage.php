@@ -18,12 +18,13 @@ if(isset($_COOKIE["userid"])) {
 
 $action = filter_input(INPUT_POST, 'action');
 $manage_choice = filter_input(INPUT_POST, 'manage_choice');
+$books = get_books ();
 
 switch($action) {
 	//CHOOSE WHAT TO DO
 	case 'choose_manage_option' :
 			switch($manage_choice) {
-				case 'Add New':
+				case 'Add New':					
 					include('./view/submit_new_review.php');
 					break;
 				case 'Edit Existing':
@@ -40,6 +41,8 @@ switch($action) {
 			
 	//NEW REVIEW CASES
 	case 'title_chosen_new_review' :
+		$book_id_chosen = filter_input ( INPUT_POST, 'book_id_for_review', FILTER_VALIDATE_INT );
+		$title_chosen = get_book_info ( $book_id_chosen ) ['bookTitle'];
 		include('./view/submit_new_review.php');
 		break;
 	case 'final_submit_new_review' :
@@ -57,9 +60,17 @@ switch($action) {
 		
 	//EDIT REVIEW CASES
 	case 'title_chosen_edit_review' :
+		$book_id_chosen = filter_input ( INPUT_POST, 'book_id_for_review', FILTER_VALIDATE_INT );
+		$title_chosen = get_book_info ( $book_id_chosen ) ['bookTitle'];
+		$reviews = get_reviews_by_book ( $book_id_chosen );
 		include('./view/edit_existing_review.php');
 		break;
 	case 'review_chosen_edit_review' :
+		$book_id_chosen = filter_input ( INPUT_POST, 'book_id_for_review', FILTER_VALIDATE_INT );
+		$title_chosen = get_book_info ( $book_id_chosen ) ['bookTitle'];
+		$review_id_chosen = filter_input ( INPUT_POST, 'review_choice', FILTER_VALIDATE_INT );
+		$review_info = get_review_info_by_id ( $review_id_chosen );
+		$current_rating = $review_info['rating'];
 		include('./view/edit_existing_review.php');
 		break;
 	case 'final_submit_edit_review' :
@@ -78,9 +89,16 @@ switch($action) {
 		
 	//DELETE REVIEW CASES
 	case 'title_chosen_delete_review' :
+		$book_id_chosen = filter_input ( INPUT_POST, 'book_id_for_review', FILTER_VALIDATE_INT );
+		$title_chosen = get_book_info ( $book_id_chosen ) ['bookTitle'];
+		$reviews = get_reviews_by_book ( $book_id_chosen );
 		include('./view/delete_existing_review.php');
 		break;
-	case 'review_chosen_delete_review' :		
+	case 'review_chosen_delete_review' :
+		$book_id_chosen = filter_input ( INPUT_POST, 'book_id_for_review', FILTER_VALIDATE_INT );
+		$title_chosen = get_book_info ( $book_id_chosen ) ['bookTitle'];
+		$review_id_chosen = filter_input ( INPUT_POST, 'review_choice', FILTER_VALIDATE_INT );
+		$review_info = get_review_info_by_id ( $review_id_chosen );
 		include('./view/delete_existing_review.php');
 		break;
 	case 'final_submit_delete_review' :

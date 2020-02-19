@@ -1,14 +1,3 @@
-<?php
-$books = get_books ();
-
-$action = filter_input ( INPUT_POST, 'action' );
-if ($action == 'title_chosen_new_review') {
-	$book_id_chosen = filter_input ( INPUT_POST, 'book_id_for_review', FILTER_VALIDATE_INT );
-	$title_chosen = get_book_info ( $book_id_chosen ) ['bookTitle'];
-}
-
-?>
-
 <?php include './view/header.php'; ?>
 <?php include './view/nav_menu.php'; ?>
 <main>
