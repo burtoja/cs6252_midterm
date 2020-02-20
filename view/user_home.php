@@ -8,7 +8,7 @@
 		Feel free to navigate the site to read other reviews, add more
 		reviews, edit your previous reviews, or delete your previous reviews.</p>
 	<ul>
-		<?php if(count($reviews) == 0) : ?>
+		<?php if(empty($reviews)) : ?>
 			<li>You have no reviews on record within the last year.</li>
 		<?php else: ?>
 	 		<?php foreach ( $selectedBookID as $book_id ) :

@@ -19,7 +19,7 @@ if(isset($_COOKIE["userid"])) {
 	//Get reviews by user
 	$reviews_raw = get_review_info_by_user($user_id);
 	$books = get_books();
-	
+	$reviews = [];
 	$reviewNumber = 0;
 	$selectedBookID[0] = 0;
 	$selectedBookID[1] = 0;
