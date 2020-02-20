@@ -108,7 +108,12 @@ main li {
 .book_info {
 	background-color: #E2D9E4;
 	padding-left: 2.0em;
+	padding-right: 1.0em;
 	padding-top: 0.5em;
+}
+
+ul.book_info {
+	padding-bottom: 1.0em;
 }
 
 main a {
