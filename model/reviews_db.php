@@ -54,6 +54,19 @@ function get_reviews_by_user_and_book_id($user_id, $book_id) {
 	return $review_info;
 }
 
+function get_average_rating_for_book($book_id) {
+	global $db;
+	$query = 'SELECT AVG(rating) FROM reviews
+              WHERE bookID = :book_id
+			  ';
+	$statement = $db->prepare($query);
+	$statement->bindValue(':book_id', $book_id);
+	$statement->execute();
+	$average_rating = $statement->fetchColumn();
+	$statement->closeCursor();
+	return number_format($average_rating, 1);
+}
+
 function add_review($book_id, $rating, $review, $user_id) {
 	global $db;
 	$query = 'INSERT INTO reviews

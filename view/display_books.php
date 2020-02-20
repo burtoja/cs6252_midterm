@@ -15,6 +15,7 @@
 						<?php echo $book['bookTitle']; ?> 
 					</a>
 				</h2>
+			 	<span class="average_stars">(Average Rating: <?php echo get_average_rating_for_book($book_id); ?> stars)</span>
 			</li>
 			<?php if (!empty($_GET) && $_GET['bookID'] == $book['bookID']) : ?>
 			<ul class="book_info">

@@ -143,6 +143,12 @@ input[type=submit]:hover {
 	color: red;
 }
 
+.average_stars {
+	font-style: italic;
+	font-size: small;
+	color: #409085;
+}
+
 .review_date {
 	font-style: italic;
 	font-size: small;
