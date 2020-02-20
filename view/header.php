@@ -4,7 +4,7 @@
 <head>
     <title>Bippity Boppity Book Reveiws</title>
     <link rel="stylesheet" type="text/css"
-          href="/cs6252/MidtermProjectAllenBurton/main.css">
+          href="./main.css">
 </head>
 
 <!-- the body section -->
