@@ -1,5 +1,6 @@
 <?php include './view/header.php'; ?>
 <?php include './view/nav_menu.php'; ?>
+<?php include './view/star_generator.php'; ?>
 
 <main>
 
@@ -7,7 +8,7 @@
 	<p>Choose a book below to read the reviews posted about it:</p>
 
 	<ul>
- 		<?php foreach ($books as $book) :?>
+		<?php foreach ($books as $book) :?>
  			<?php $book_id = $book['bookID'];?>
 			<li class="book_title_link">
 				<h2>
@@ -15,7 +16,13 @@
 						<?php echo $book['bookTitle']; ?> 
 					</a>
 				</h2>
-			 	<span class="average_stars">(Average Rating: <?php echo get_average_rating_for_book($book_id); ?> stars)</span>
+				<?php $rating = get_average_rating_for_book($book_id); ?>
+				<span class="stars"><?php echo star_rating($rating)?></span>
+				<?php if ($rating == 0.0) :?>
+					<span class="average_rating">(No reviews yet for this book)</span>
+				<?php else :?>
+					<span class="average_rating">(Average Rating: <?php echo $rating; ?> stars)</span>
+				<?php endif;?>
 			</li>
 			<?php if (!empty($_GET) && $_GET['bookID'] == $book['bookID']) : ?>
 			<ul class="book_info">
@@ -35,7 +42,8 @@
 						<?php foreach ($reviews as $review) :?>
 						<li>
 							<h3>REVIEW:</h3>
-							<span class="rating">User Rating: <?php echo $review['rating']; ?> STARS</span><br>
+							<span class="rating">User Rating: <?php echo $review['rating']; ?> STARS</span>
+							<span class="stars"><?php echo star_rating($review['rating'])?></span><br>
 							<span class="review"><?php echo $review['review']; ?></span><br>
 							<span class="review_date">(Posted on <?php echo $review['reviewDate']; ?>)</span>	
 						</li>

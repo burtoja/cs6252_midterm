@@ -1,5 +1,6 @@
 <?php include './view/header.php'; ?>
 <?php include './view/nav_menu.php' ?>
+<?php include './view/star_generator.php'; ?>
 <main>
 
 	<h2>Welcome to Bippity Boppity Book Reviews</h2>
@@ -43,7 +44,8 @@
 							<?php foreach ($reviews as $review) :?>
 							<li>
 								<h3>REVIEW:</h3>
-								<span class="rating">User Rating: <?php echo $review['rating']; ?> STARS</span><br>
+								<span class="rating">User Rating: <?php echo $review['rating']; ?> STARS</span>
+								<span class="stars"><?php echo star_rating($review['rating'])?></span><br>
 								<span class="review"><?php echo $review['review']; ?></span><br>
 								<span class="review_date">(Posted on <?php echo $review['reviewDate']; ?>)</span><br>	
 							</li>
